@@ -31,8 +31,24 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_dotenv: ^5.0.2
+
+  # networking
   dio: ^4.0.6
 
+  # dependency injection
+  provider: ^6.0.5
+
+  # data format
+  intl: ^0.18.0
+
+  # views animation
+  loading_animation_widget: ^1.2.0+4
+  top_snackbar_flutter: ^3.0.0+1
+
+  # use for block
+  bloc: ^8.1.0
+  flutter_bloc: ^8.1.1
+  equatable: ^2.0.5
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

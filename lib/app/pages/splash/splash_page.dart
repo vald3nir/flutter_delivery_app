@@ -9,7 +9,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Splash'),
+        backgroundColor: Colors.black,
       ),
       body: ColoredBox(
         color: const Color(0XFF140E0E),
@@ -34,7 +34,9 @@ class SplashPage extends StatelessWidget {
                       label: "Acessar",
                       height: 35,
                       width: context.percentWidth(.6),
-                      onPressed: () {})
+                      onPressed: () {
+                        Navigator.of(context).popAndPushNamed("/home");
+                      })
                 ],
               ),
             )
