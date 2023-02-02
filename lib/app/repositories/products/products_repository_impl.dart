@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:delivery_app/app/core/config/rest_client/custom_dio.dart';
 import 'package:delivery_app/app/model/product_model.dart';
 import 'package:dio/dio.dart';
@@ -22,7 +24,7 @@ class ProductsRepositoryImpl implements ProductsRepository {
           )
           .toList();
     } on DioError catch (e, s) {
-      //log('Erro ao buscar produtos', error: e, stackTrace: s);
+      log('Erro ao buscar produtos', error: e, stackTrace: s);
       throw RepositoryException(message: 'Erro ao buscar produtos');
     }
   }
