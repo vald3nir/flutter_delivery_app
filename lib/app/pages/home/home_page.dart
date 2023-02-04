@@ -6,6 +6,8 @@ import 'package:delivery_app/app/pages/home/widgets/delivery_product_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'widgets/shopping_bag_widget.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -54,6 +56,11 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
                       );
                     }),
               ),
+              Visibility(
+                  visible: state.shoppingBag.isNotEmpty,
+                  child: ShoppingBagWidget(
+                    bag: state.shoppingBag,
+                  )),
             ],
           );
         },
