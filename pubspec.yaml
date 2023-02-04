@@ -47,6 +47,7 @@ dependencies:
 
   # utils
   auto_size_text: ^3.0.0
+  shared_preferences: ^2.0.17
   intl: ^0.18.0 # data format
 
   # use for block
