@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:delivery_app/app/core/extenions/formatter_extension.dart';
+import 'package:delivery_app/app/dto/order_product_dto.dart';
 import 'package:flutter/material.dart';
 
 import 'package:delivery_app/app/core/ui/base_state/base_state.dart';
@@ -15,10 +16,12 @@ import '../../core/ui/widgets/delivery_increment_decrement_button.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final ProductModel product;
+  final OrderProductDto? orderProduct;
 
   const ProductDetailPage({
     super.key,
     required this.product,
+    required this.orderProduct,
   });
 
   @override
@@ -27,6 +30,14 @@ class ProductDetailPage extends StatefulWidget {
 
 class _ProductDetailPageState
     extends BaseState<ProductDetailPage, ProductDetailController> {
+  
+  @override
+  void initState() {
+    super.initState();
+    final amount = widget.orderProduct?.amount ?? 1;
+    controller.initial(amount, widget.orderProduct != null);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,8 +74,7 @@ class _ProductDetailPageState
               child: SingleChildScrollView(
                 child: Text(
                   widget.product.description,
-                  style:
-                      context.textStyles.textRegular.copyWith(fontSize: 18),
+                  style: context.textStyles.textRegular.copyWith(fontSize: 18),
                 ),
               ),
             ),
@@ -97,7 +107,10 @@ class _ProductDetailPageState
                 child: BlocBuilder<ProductDetailController, int>(
                   builder: (context, amount) {
                     return ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pop(OrderProductDto(
+                            product: widget.product, amount: amount));
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
