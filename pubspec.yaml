@@ -38,15 +38,16 @@ dependencies:
   # dependency injection
   provider: ^6.0.5
 
-  # data format
-  intl: ^0.18.0
-
   # code generator
   match: ^0.4.1
 
   # views animation
   loading_animation_widget: ^1.2.0+4
   top_snackbar_flutter: ^3.0.0+1
+
+  # utils
+  auto_size_text: ^3.0.0
+  intl: ^0.18.0 # data format
 
   # use for block
   bloc: ^8.1.0
