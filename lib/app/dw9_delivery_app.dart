@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'core/providers/application_binding.dart';
 import 'core/ui/theme/theme_config.dart';
 import 'pages/auth/login/login_page.dart';
-import 'pages/auth/register/register_page.dart';
+import 'pages/auth/register/register_router.dart';
 import 'pages/home/home_router.dart';
 import 'pages/product_detail/product_detail_router.dart';
 import 'pages/splash/splash_page.dart';
@@ -22,7 +22,7 @@ class Dw9DeliveryApp extends StatelessWidget {
           '/home': (context) => HomeRouter.page,
           '/productDetail': (context) => ProductDetailRouter.page,
           '/auth/login': (context) => const LoginPage(),
-          '/auth/register': (context) => const RegisterPage(),
+          '/auth/register': (context) => RegisterRouter.page,
         },
       ),
     );

@@ -45,10 +45,13 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   top_snackbar_flutter: ^3.0.0+1
 
+  # databse
+  shared_preferences: ^2.0.17
+
   # utils
   auto_size_text: ^3.0.0
-  shared_preferences: ^2.0.17
   intl: ^0.18.0 # data format
+  validatorless: ^1.2.3 
 
   # use for block
   bloc: ^8.1.0
