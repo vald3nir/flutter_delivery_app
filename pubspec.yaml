@@ -44,6 +44,7 @@ dependencies:
   # views animation
   loading_animation_widget: ^1.2.0+4
   top_snackbar_flutter: ^3.0.0+1
+  flutter_awesome_select: ^6.5.0
 
   # databse
   shared_preferences: ^2.0.17
