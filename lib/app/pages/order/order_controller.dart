@@ -28,4 +28,32 @@ class OrderController extends Cubit<OrderState> {
           errorMessage: "Erro ao carregar a pagina"));
     }
   }
+
+  void incrementProduct(int index) {
+    final orders = [...state.orderProducts];
+    final order = orders[index];
+    orders[index] = order.copyWith(amount: order.amount + 1);
+    emit(
+      state.copyWith(
+        status: OrderStatus.updateOrder,
+        orderProducts: orders,
+      ),
+    );
+  }
+
+  void decrementProduct(int index) {
+    final orders = [...state.orderProducts];
+    final order = orders[index];
+    final amount = order.amount;
+    if (amount <= 1) {
+    } else {
+      orders[index] = order.copyWith(amount: order.amount - 1);
+    }
+    emit(
+      state.copyWith(
+        status: OrderStatus.updateOrder,
+        orderProducts: orders,
+      ),
+    );
+  }
 }
