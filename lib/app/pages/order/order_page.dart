@@ -14,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../core/ui/widgets/delivery_appbar.dart';
+import '../../dto/order_dto.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});
@@ -44,6 +45,37 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
     );
   }
 
+  void _showConfirmProductDialog(OrderConfirmDeleteProductState state) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Deseja remover o ${state.orderProduct.product.name}?"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "Cancelar",
+                    style:
+                        context.textStyles.textBold.copyWith(color: Colors.red),
+                  )),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    controller.cancelDeleteProcess();
+                  },
+                  child: Text(
+                    "Confirmar",
+                    style: context.textStyles.textBold,
+                  )),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<OrderController, OrderState>(
@@ -54,6 +86,24 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
           error: () {
             hideLoader();
             showError(state.errorMessage ?? "erro não informado");
+          },
+          confirmRemoveProduct: () {
+            hideLoader();
+            if (state is OrderConfirmDeleteProductState) {
+              _showConfirmProductDialog(state);
+            }
+          },
+          emptyBag: () {
+            hideLoader();
+            showInfo("Sua sacola está vazia, add mais produtos");
+            Navigator.pop(context, <OrderProductDto>[]);
+          },
+          success: () {
+            hideLoader();
+            Navigator.of(context).popAndPushNamed(
+              "/order/completed",
+              result: <OrderProductDto>[],
+            );
           },
         );
       },
@@ -76,7 +126,7 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
                       children: [
                         Text("Carrinho", style: context.textStyles.textTitle),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () => controller.emptyBag(),
                             icon:
                                 Image.asset('assets/images/trashRegular.png')),
                       ],
@@ -202,7 +252,12 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
                             final paymentTYpeSelected = paymentId != null;
                             paymentTypeVelid.value = paymentTYpeSelected;
 
-                            if (valid) {}
+                            if (valid && paymentTYpeSelected) {
+                              controller.saveOrder(
+                                  document: documentEC.text,
+                                  address: addressEC.text,
+                                  paymentMethodeID: paymentId!);
+                            }
                           },
                         ),
                       )

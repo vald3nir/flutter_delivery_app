@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 import 'package:match/match.dart';
 
@@ -14,6 +13,9 @@ enum OrderStatus {
   loaded,
   error,
   updateOrder,
+  confirmRemoveProduct,
+  emptyBag,
+  success,
 }
 
 class OrderState extends Equatable {
@@ -61,4 +63,18 @@ class OrderState extends Equatable {
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
+}
+
+class OrderConfirmDeleteProductState extends OrderState {
+  final OrderProductDto orderProduct;
+  final int index;
+
+  const OrderConfirmDeleteProductState({
+    required this.orderProduct,
+    required this.index,
+    required super.status,
+    required super.orderProducts,
+    required super.paymentTypes,
+    super.errorMessage,
+  });
 }
