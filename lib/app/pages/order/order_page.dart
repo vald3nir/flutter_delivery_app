@@ -56,6 +56,7 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
               TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
+                    controller.cancelDeleteProcess();
                   },
                   child: Text(
                     "Cancelar",
@@ -65,7 +66,7 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    controller.cancelDeleteProcess();
+                    controller.decrementProduct(state.index);
                   },
                   child: Text(
                     "Confirmar",
