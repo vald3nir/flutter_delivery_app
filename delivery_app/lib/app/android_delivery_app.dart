@@ -10,10 +10,10 @@ import 'package:delivery_app/app/pages/product_detail/product_detail_router.dart
 import 'package:delivery_app/app/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
-class Dw9DeliveryApp extends StatelessWidget {
+class AndroidDeliveryApp extends StatelessWidget {
   final _navKey = GlobalKey<NavigatorState>();
 
-  Dw9DeliveryApp({super.key}) {
+  AndroidDeliveryApp({super.key}) {
     GlobalContext.instance.navigatorKey = _navKey;
   }
 

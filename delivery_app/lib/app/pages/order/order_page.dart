@@ -14,7 +14,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../core/ui/widgets/delivery_appbar.dart';
-import '../../dto/order_dto.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});
